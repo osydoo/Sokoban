@@ -1,2 +1,51 @@
-#include <stdio.h>
-int main(void)
+#include<stdio.h>
+#include<stdlib.h>
+char stage[5][30][30]={};
+void map()
+{ 
+FILE* map;
+int i = 0, j = 0, k = 0;
+char a; map = fopen("map.c", "r"); 
+while(fscanf(map,"%c",&a) != EOF)
+{ 
+if(a == 'm')  
+continue; 
+if(a == 'a')
+continue; 
+if(a == 'p')
+continue;
+  if(a == 'e')  
+  break;  
+  stage[i][j][k] = a;
+  k++;
+  if(k >= 30)
+  {  
+  k = 0; j++; 
+  } 
+  if(j >= 30)  
+  {
+  j = 0;
+  i++;
+  } 
+  }  
+  /*  임시용 fclose(map);
+ for( i = 0 ; i < 5 ; i++)
+ {
+ for(j = 0 ; j < 30 ; j++) 
+ {
+ for(k = 0 ; k < 30 ; k++)
+ { 
+ printf("%c", stage[i][j][k]); 
+ } 
+ }}수정할것*/
+ }
+ 
+ int main(void)
+ {
+ int num = 1, a;
+ //printf("불러올 맵 :");
+ //scanf("%d", &num);
+ map();
+
+return 0;
+}
