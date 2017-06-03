@@ -1,1 +1,12 @@
 #include <stdio.h>
+ #include<stdlib.h>  
+ char stage[5][30][30]={0,};  
+ int map(int num)  
+ {  
+ FILE* map;  
+ int i, j, k; 
+ map = fopen("map.c", "r"); 
+ for(i = 0; i < 5 ; i++) 
+ for(j = 0; j < 30 ; j++) 
+ for(k = 0; k < 30 ; k++) 
+ fscanf(map , "%c", &stage[i][j][k]); 15      fclose(map); 16 17      switch(num) 18 { 19      case 1: 20      i = 0; 21      for(j = 0 ; j < 30 ; j++); 22      for(k = 0 ; k < 30 ; k++); 23     printf("%c", &stage[i][j][k]); 24      break; 25 26      case 2: 27      i = 1; 28      for(j = 0 ; j < 30 ; j++); 29      for(k = 0 ; k < 30 ; k++); 30     printf("%c", &stage[i][j][k]); 31      break; 32 33      case 3: 34      i = 2; 35      for(j = 0 ; j < 30 ; j++);
