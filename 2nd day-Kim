@@ -2,12 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <termio.h>
 #define N 11
 void insert_userName(char[]);
+int getch(void);
+
 int main(void)
 {
     char name[N] = "";
     insert_userName(name);
+    int i = getch();
+    printf("%c",i);
     return 0;
 }
 
@@ -56,4 +61,26 @@ void insert_userName(char name[])
     system("clear");
     printf("\n     Hello %s\n\n\n",name);
     return;
+}
+
+int getch(void)
+{
+        int ch;
+
+        struct termios buf;
+        struct termios save;
+
+        tcgetattr(0,&save);
+        buf = save;
+
+        buf.c_lflag&=~(ICANON|ECHO);
+        buf.c_cc[VMIN] = 1;
+        buf.c_cc[VTIME] = 0;
+
+        tcsetattr(0,TCSAFLUSH,&buf);
+
+        ch = getchar();
+        tcsetattr(0,TCSAFLUSH,&save);
+
+        return ch;
 }
