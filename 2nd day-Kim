@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#define N 11
+void insert_userName(char[]);
+int main(void)
+{
+    char name[N] = "";
+    insert_userName(name);
+    return 0;
+}
+
+void insert_userName(char name[])
+{
+    int  i ,c;
+    printf("Start....\n");
+//  sleep(1);                    //start .... 을 로딩하는 것처럼 보이기 위해 한 것인데 안됨.
+//  printf(".");
+//  sleep(1);
+//  printf(".");
+//  sleep(1);
+//  printf(".");
+//  sleep(1);
+//  printf(".");
+    printf("input name : ");
+    i = 0;
+    while(1)
+    {
+        c = getchar();               //c가 char형이면 어떻게됨?
+        //이름에 공백이 있는지 이름이 10자 이상인지 검사
+        //만일 그렇다면
+        //    개행 문자가 나올 때까지 무시하고
+        //    다시 이름을 입력 받음
+        if((c == ' ') || (i == N))
+        {
+            //개행 문자까지 무시함
+            while((c=getchar()) != '\n')
+                    ;
+            printf("이름을 다시 입력하세요 : ");
+            i = 0;
+            continue;
+        }
+        // 읽어들인 문자가 개행 문자인지 EOF인지 검사
+        // 만일 그렇다면
+        //      널 문자를 name에 넣고 이름 읽기를 종료함
+        if((c=='\n') || ( c == EOF))
+        {
+            name[i++] = '\0';
+            break;
+
+        }
+        //이름 문자를 name에 저장
+        name[i++] = c;
+    }
+    system("clear");
+    printf("\n     Hello %s\n\n\n",name);
+    return;
+}
